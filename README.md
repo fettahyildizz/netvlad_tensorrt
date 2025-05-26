@@ -25,7 +25,8 @@ pip install onnx==1.18.0 onnxruntime==1.12.0
 pip install numpy==1.23.2 setuptools==45.2.0
 pip install protobuf==3.6.1 onnxscript==0.2.6
 ```
-> **Note**: The checkpoint file will be automatically downloaded if not found locally.
+> This conversions are tested in **Tensorrt 8.5.3** and **Tensorrt 8.4.1.5.** environment.
+
 
 ## 🔄 Model Conversion
 ### Step 1: To Onnx
@@ -42,7 +43,7 @@ python3 scripts/netvlad2onnx.py  \
     -o models/netvlad.onnx \
     -c config/speed.ini
 ```
-These parameters are default. You may configure with respected to your models. If model path is not provided, it would download from [this link](https://cloudstor.aarnet.edu.au/plus/s/ZgW7DMEpeS47ELI/download)
+These parameters are default. You may configure with your needs and paths. If model path is not provided, it would download from [this link](https://cloudstor.aarnet.edu.au/plus/s/ZgW7DMEpeS47ELI/download)
 
 ### Step 2: ONNX To Tensorrt
 ```bash
@@ -86,7 +87,6 @@ image_rgb = image_rgb.permute(0, 2, 3, 1)
 
 This netvlad model is configured to work with specific image format for my use case. The input layer expects **RGB , NWHC (opencv format) image**. TensorRT requires NCHW image format so it intrinsically converts data from NWHC to NCHW in forward() method. Netvlad also expects RGB color space (not opencv format), so be aware of that.
 
-> This conversions are tested in **Tensorrt 8.5.3** and **Tensorrt 8.4.1.5.** environment.
 
 ## TODO:
 * I may add inference code.
