@@ -37,19 +37,6 @@ class EngineBuilder:
             self.shape = shape
         
         MAX_BATCH_SIZE = self.shape[0]
-        
-        # Handle Tensor Shape
-        if self.shape[1] == 3:
-            self.format = "NCHW"
-            self.net_c = self.shape[1]
-            self.height = self.shape[2]
-            self.width = self.shape[3]
-        elif self.shape[3] == 3:
-            self.format = "NHWC"
-            self.height = self.shape[1]
-            self.width = self.shape[2]
-            self.net_c = self.shape[3]
-        assert all([self.format, self.width > 0, self.height > 0])
 
         TRT_LOGGER = trt.Logger(trt.Logger.VERBOSE) if verbose else trt.Logger()
         self.EXPLICIT_BATCH = (

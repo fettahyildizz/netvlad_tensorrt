@@ -104,9 +104,9 @@ class NetvladGeneric(nn.Module):
             self.nn_model.encoder = nn.DataParallel(self.nn_model.encoder)
             self.nn_model.pool = nn.DataParallel(self.nn_model.pool)
 
-    # Expects RGB , NWHC (opencv format) image
+    # Expects RGB , NHWC image
     def forward(self, img):
-        img = img.permute(0, 3, 1, 2) # Convert from NWHC to NCWH
+        img = img.permute(0, 3, 1, 2) # Convert from NHWC to NCHW
         it = nn.Sequential(
             transforms.Resize((480, 640)),
             transforms.Normalize(

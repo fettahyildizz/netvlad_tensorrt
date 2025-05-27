@@ -58,10 +58,10 @@ class ExportOnnx:
                 ]
             )
 
-            # Model expects RGB, 640x480, NWHC (opencv format)            
             tensor_image = it(realtime_image_pil).unsqueeze(0)
             tensor_image = tensor_image.to(self.device)
             
+            # convert from NCHW to NHWC
             tensor_image = tensor_image.permute(0, 2, 3, 1)
 
             torch.onnx.export(
@@ -69,7 +69,6 @@ class ExportOnnx:
                 tensor_image,
                 self.onnx_model_path, 
                 True,
-                # opset_version=11,  # the ONNX version to export the model to
             )
     
     def download_all_models(self, ask_for_permission=False):

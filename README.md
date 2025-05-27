@@ -57,8 +57,6 @@ These parameters are default. You may configure with your needs and paths. If mo
 ### Image Format Requirements
 - **Color Space**: RGB (not BGR/OpenCV format)
 - **Layout**: NHWC (Height-Width-Channel) format expected
-- **Conversion**: Automatically converts NHWC → NCHW for TensorRT compatibility
-- **Preprocessing**: Built-in normalization and resizing
 
 
 ### Example Input Preparation
@@ -81,7 +79,7 @@ it = transforms.Compose(
 )
 image_rgb = it(image_rgb).unsqueeze(0)
 
-image_rgb = image_rgb.permute(0, 2, 3, 1)
+image_rgb = image_rgb.permute(0, 2, 3, 1) # Convert from NCHW to NHWC
 
 ```
 
