@@ -20,10 +20,7 @@ pip install -e .
 
 ### Environment Requirements
 ```bash
-pip install torch==1.12.0 torchvision==0.13.0
-pip install onnx==1.18.0 onnxruntime==1.12.0
-pip install numpy==1.23.2 setuptools==45.2.0
-pip install protobuf==3.6.1 onnxscript==0.2.6
+pip install -r requirements.txt
 ```
 > This conversions are tested in **Tensorrt 8.5.3** and **Tensorrt 8.4.1.5.** environment.
 
