@@ -13,7 +13,7 @@ import urllib.request
 # import torchvision
 from PIL import Image as Image
 
-from src.netvlad_tensorrt.model_generic import NetvladGeneric
+from netvlad_tensorrt.model_generic import NetvladGeneric
 
 class ExportOnnx:
     """Export Onnx Class"""
